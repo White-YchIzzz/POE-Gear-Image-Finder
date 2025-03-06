@@ -1,0 +1,170 @@
+@import './base.css';
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-image: url('./wavy-lines.svg');
+  background-size: cover;
+  user-select: none;
+}
+
+code {
+  font-weight: 600;
+  padding: 3px 5px;
+  border-radius: 2px;
+  background-color: var(--color-background-mute);
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Consolas,
+    Liberation Mono,
+    monospace;
+  font-size: 85%;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 80px;
+}
+
+.gear-iamge-wrapper {
+  margin-left: 100px;
+  width: 128px;
+}
+
+.gear-image {
+  -webkit-user-drag: none;
+  width: 100%;
+  will-change: filter;
+  transition: filter 300ms;
+  cursor: pointer;
+}
+
+.gear-image:hover {
+  filter: drop-shadow(0 0 1.2em #6988e6aa);
+}
+
+.text {
+  font-size: 28px;
+  color: var(--ev-c-text-1);
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+  margin: 0 10px;
+  padding: 16px 0;
+}
+
+.vue {
+  background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* 输入框和图片之间的间距 */
+  padding: 20px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* 提示文本和输入框之间的间距 */
+}
+
+/* 为输入框添加样式 */
+.gears-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+/* 输入框聚焦时的样式 */
+.gears-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 下拉框样式 */
+.dropdown {
+  position: absolute;
+  top: 100%; /* 位于输入框下方 */
+  left: 0; /* 与输入框左对齐 */
+  background-color: var(--ev-c-gray-3);
+  border: 1px solid var(--ev-c-gray-2);
+  border-radius: 4px;
+  width: 100%; /* 宽度和输入框一致 */
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  box-sizing: border-box; /* 确保边框和内边距包含在宽度内 */
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 8px;
+  cursor: pointer;
+  color: var(--ev-c-text-1);
+}
+
+.dropdown li:hover {
+  background-color: var(--ev-c-gray-2);
+}
+
+/* 点击项的凸显效果 */
+.dropdown li.selected {
+  background-color: var(--ev-c-gray-1); /* 背景颜色变化 */
+  color: var(--ev-c-white); /* 字体颜色变化 */
+}
+
+/* 滚动条样式（WebKit 浏览器） */
+.dropdown::-webkit-scrollbar {
+  width: 8px; /* 滚动条宽度 */
+}
+
+.dropdown::-webkit-scrollbar-track {
+  background: var(--ev-c-gray-3); /* 滚动条轨道背景颜色 */
+  border-radius: 4px; /* 轨道圆角 */
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: var(--ev-c-gray-2); /* 滚动条滑块颜色 */
+  border-radius: 4px; /* 滑块圆角 */
+}
+
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--ev-c-gray-1); /* 鼠标悬停时滑块颜色 */
+}
+
+/* 滚动条样式（Firefox 浏览器） */
+.dropdown {
+  scrollbar-width: thin; /* 滚动条宽度 */
+  scrollbar-color: var(--ev-c-gray-2) var(--ev-c-gray-3); /* 滑块颜色和轨道颜色 */
+}
+@media (max-width: 720px) {
+  .text {
+    font-size: 20px;
+  }
+}
