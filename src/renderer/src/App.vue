@@ -1,29 +1,38 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive, shallowRef } from 'vue'
+import { debounce } from 'lodash'
 
 const gearName = ref('')
-const gearsData = ref<any>([])
-const searchResult = ref<any>([])
+const gearsData = shallowRef<any>([])
+const searchResult = shallowRef<any>([])
 const imgSrc = ref('')
 const activeName = ref('')
+const uniqueMap = reactive<Map<string, any>>(new Map())
 
 const getGearsData = async () => {
   gearsData.value = await window.api.invoke('get-gears')
+
+  gearsData.value.forEach((item: any) => {
+    const chinese = item.chinese
+    uniqueMap.set(chinese, item)
+  })
 }
 
 onMounted(() => {
   getGearsData()
 })
 
-const handleInputGearName = (gearName: string) => {
+const handleInputGearName = debounce((gearName: string) => {
   if (gearName === '') {
     searchResult.value = []
     return
   }
-  const lowerCaseGearName = gearName.trim()
+  const _gearName = gearName.trim()
 
-  searchResult.value = gearsData.value.filter((item) => item.chinese.includes(lowerCaseGearName))
-}
+  searchResult.value = Array.from(uniqueMap.entries())
+    .filter(([key]) => key.includes(_gearName))
+    .map(([, value]) => value)
+}, 300)
 
 const handleItemClick = (gearInfo: any) => {
   activeName.value = gearInfo.chinese
