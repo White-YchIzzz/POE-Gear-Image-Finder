@@ -4,12 +4,8 @@ import { net, shell } from 'electron'
 
 export class GearService {
   public static getGearData() {
-    const dataPath = path.join(__dirname, '../../resources/unique.ndjson')
-    return fs
-      .readFileSync(dataPath)
-      .toString()
-      .split('\n')
-      .map((line) => JSON.parse(line))
+    const dataPath = path.join(__dirname, '../../resources/unique.json')
+    return JSON.parse(fs.readFileSync(dataPath).toString())
   }
 
   public static async downloadImage(_, { url, filename }: { url: string; filename: string }) {

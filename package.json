@@ -1,5 +1,5 @@
 {
-  "name": "POE Gear Image Finder",
+  "name": "poe-gear-image-finder",
   "version": "1.0.0",
   "description": "Help you find the gear image quickly",
   "main": "./out/main/index.js",

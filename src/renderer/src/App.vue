@@ -20,16 +20,14 @@ const handleInputGearName = (gearName: string) => {
     searchResult.value = []
     return
   }
-  const lowerCaseGearName = gearName.toLowerCase()
+  const lowerCaseGearName = gearName.trim()
 
-  searchResult.value = gearsData.value.filter((item) =>
-    item.name.toLowerCase().includes(lowerCaseGearName)
-  )
+  searchResult.value = gearsData.value.filter((item) => item.chinese.includes(lowerCaseGearName))
 }
 
 const handleItemClick = (gearInfo: any) => {
-  activeName.value = gearInfo.name
-  imgSrc.value = gearInfo.icon
+  activeName.value = gearInfo.chinese
+  imgSrc.value = gearInfo.image
 }
 
 const downloadImage = async () => {
@@ -71,11 +69,11 @@ const downloadImage = async () => {
           <ul>
             <li
               v-for="item in searchResult"
-              :key="item.name"
-              :class="{ selected: item.name === activeName }"
+              :key="item.chinese"
+              :class="{ selected: item.chinese === activeName }"
               @click="handleItemClick(item)"
             >
-              {{ item.name }}
+              {{ item.chinese }}
             </li>
           </ul>
         </div>

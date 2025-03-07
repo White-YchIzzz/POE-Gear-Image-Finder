@@ -14,6 +14,7 @@ export class WindowManager {
         preload: path.join(__dirname, '../preload/index.js'),
         sandbox: false
       },
+      icon: path.join(__dirname, '../../resources/icon.ico'),
       ...options
     }
 
